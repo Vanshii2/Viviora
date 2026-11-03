@@ -26,9 +26,9 @@ export default function HomePage() {
         eyebrow="Nutrition & Wellness"
         title={
           <>
-            Your Body Is <span className="text-highlight">Unique</span>.
+            Your Body Is Unique.
             <br />
-            Your <span className="text-highlight">Nutrition</span> Should Be Too.
+            Your Nutrition Should Be Too.
           </>
         }
         description="Personalized nutrition for your body, your goals, and your lifestyle."

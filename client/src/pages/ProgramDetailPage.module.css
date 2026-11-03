@@ -35,6 +35,9 @@
   font-size: var(--text-md);
   color: var(--color-text-secondary);
 }
+.heroCta {
+  margin-top: var(--space-2);
+}
 .media {
   aspect-ratio: 16 / 10;
   overflow: hidden;

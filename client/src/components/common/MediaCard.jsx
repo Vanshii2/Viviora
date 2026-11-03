@@ -5,7 +5,7 @@ import styles from './MediaCard.module.css';
 
 /**
  * The one card used for programs and categories so every card shares identical structure:
- * image → title → short description → call to action.
+ * image → title → short description → (optional extra, e.g. price) → call to action.
  */
 export default function MediaCard({
   image,
@@ -15,6 +15,7 @@ export default function MediaCard({
   to,
   ctaLabel = 'Learn More',
   meta,
+  children,
 }) {
   return (
     <article className={styles.card}>
@@ -27,6 +28,7 @@ export default function MediaCard({
           <Link to={to}>{title}</Link>
         </h3>
         <p className={styles.description}>{description}</p>
+        {children && <div className={styles.extra}>{children}</div>}
         <Button
           to={to}
           variant="soft"

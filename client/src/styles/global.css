@@ -29,9 +29,10 @@ h3,
 h4 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
+  font-optical-sizing: auto;
   line-height: var(--leading-tight);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
@@ -73,19 +74,6 @@ select {
 
 ::selection {
   background: var(--color-brand-yellow-light);
-}
-
-/* Marker-style yellow accent behind selected heading words (keeps dark text for contrast). */
-.text-highlight {
-  padding-inline: 0.06em;
-  background: linear-gradient(
-    transparent 58%,
-    color-mix(in srgb, var(--color-brand-yellow) 75%, transparent) 58%,
-    color-mix(in srgb, var(--color-brand-yellow) 75%, transparent) 92%,
-    transparent 92%
-  );
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 
 .visually-hidden {

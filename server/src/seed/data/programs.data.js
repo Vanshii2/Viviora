@@ -12,17 +12,20 @@
  */
 
 /**
- * PRICING — the single place to set program prices (in rupees).
- * `null` renders as "Pricing coming soon".
+ * PRICING — the single place to set program prices (in rupees, for the full program duration).
+ *   price           what the client pays
+ *   compareAtPrice  regular price shown struck through; the discount is calculated from it.
+ *                   Only show a regular price you genuinely charge — set it to null to hide the discount.
+ * Set `price: null` to show "Pricing coming soon".
  */
 export const PROGRAM_PRICING = {
-  'gut-health': null,
-  'weight-loss': null,
-  'muscle-building': null,
-  'womens-health': null,
-  'lifestyle-disorders': null,
-  'kids-nutrition': null,
-  'sports-nutrition': null,
+  'gut-health': { price: 2499, compareAtPrice: 3499 },
+  'weight-loss': { price: 2799, compareAtPrice: 3999 },
+  'muscle-building': { price: 2499, compareAtPrice: 3499 },
+  'womens-health': { price: 2699, compareAtPrice: 3799 },
+  'lifestyle-disorders': { price: 2999, compareAtPrice: 4199 },
+  'kids-nutrition': { price: 1999, compareAtPrice: 2799 },
+  'sports-nutrition': { price: 2799, compareAtPrice: 3799 },
 };
 
 const img = (slug) => `/images/programs/${slug}.jpg`;
@@ -205,7 +208,8 @@ export const programs = programRows.map((program, index) => ({
   featured: Boolean(program.featured),
   image: img(program.slug),
   included: sharedIncluded,
-  price: PROGRAM_PRICING[program.slug] ?? null,
+  price: PROGRAM_PRICING[program.slug]?.price ?? null,
+  compareAtPrice: PROGRAM_PRICING[program.slug]?.compareAtPrice ?? null,
   faqs: sharedFaqs,
   order: index + 1,
 }));

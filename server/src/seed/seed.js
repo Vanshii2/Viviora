@@ -28,6 +28,7 @@ export function buildSeedDocuments() {
     benefits: p.benefits,
     included: p.included,
     price: p.price,
+    compareAtPrice: p.compareAtPrice,
     faqs: p.faqs.map(({ id, question, answer }) => ({ key: id, question, answer })),
     options: programOptions
       .filter((o) => o.parentSlug === p.slug)

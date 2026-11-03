@@ -1,6 +1,19 @@
 import { Program } from '../models/Program.js';
 
-const CARD_FIELDS = 'slug title shortDescription image featured order';
+const CARD_FIELDS =
+  'slug title shortDescription image featured order price compareAtPrice duration';
+
+/** Public pricing shape; discount only when the regular price is genuinely higher. */
+const toPricing = ({ price, compareAtPrice }) => {
+  const hasDiscount = price != null && compareAtPrice != null && compareAtPrice > price;
+  return {
+    price: price ?? null,
+    compareAtPrice: hasDiscount ? compareAtPrice : null,
+    discountPercent: hasDiscount
+      ? Math.round(((compareAtPrice - price) / compareAtPrice) * 100)
+      : null,
+  };
+};
 
 const toCard = (p) => ({
   slug: p.slug,
@@ -8,6 +21,8 @@ const toCard = (p) => ({
   shortDescription: p.shortDescription,
   image: p.image,
   featured: p.featured,
+  duration: p.duration,
+  ...toPricing(p),
 });
 
 const toFaqs = (faqs = []) =>
@@ -25,7 +40,7 @@ const toDetail = (p) => ({
   audience: p.audience,
   benefits: p.benefits,
   included: p.included,
-  price: p.price ?? null,
+  ...toPricing(p),
   faqs: toFaqs(p.faqs),
   options: p.options.map(({ slug, title, shortDescription }) => ({
     slug,

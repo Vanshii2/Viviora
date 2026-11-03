@@ -9,7 +9,7 @@ import Section from '../components/common/Section';
 import QueryState from '../components/common/QueryState';
 import NotFoundPage from './NotFoundPage';
 import { useProgram } from '../features/programs/hooks/usePrograms';
-import { formatPrice } from '../utils/format';
+import PriceTag from '../features/programs/components/PriceTag';
 import styles from './ProgramDetailPage.module.css';
 
 function CheckList({ items }) {
@@ -51,7 +51,7 @@ export default function ProgramDetailPage() {
   const back = program.parent
     ? { to: `/programs/${program.parent.slug}`, label: program.parent.title }
     : { to: '/programs', label: 'All programs' };
-  const getStartedTo = `/contact?subject=${encodeURIComponent(`${program.title} program`)}`;
+  const assessmentTo = `/nutrition-assessment?program=${encodeURIComponent(program.slug)}`;
 
   return (
     <>
@@ -67,6 +67,9 @@ export default function ProgramDetailPage() {
             </Link>
             <h1 className={styles.title}>{program.title}</h1>
             <p className={styles.description}>{program.description}</p>
+            <Button to={assessmentTo} size="lg" withArrow className={styles.heroCta}>
+              Start Your Assessment
+            </Button>
           </div>
           <div className={styles.media}>
             <SmartImage
@@ -82,21 +85,24 @@ export default function ProgramDetailPage() {
       <Container className={styles.body}>
         {/* 5, 7, 8. Duration, pricing, Get Started */}
         <aside className={styles.summary} aria-label="Program summary">
+          <PriceTag
+            size="lg"
+            price={program.price}
+            compareAtPrice={program.compareAtPrice}
+            discountPercent={program.discountPercent}
+          />
           <dl className={styles.facts}>
             <div>
               <dt>Duration</dt>
               <dd>{program.duration}</dd>
             </div>
-            <div>
-              <dt>Price</dt>
-              <dd>{program.price != null ? formatPrice(program.price) : 'Pricing coming soon'}</dd>
-            </div>
           </dl>
-          <Button to={getStartedTo} size="lg" withArrow fullWidth>
+          <Button to={assessmentTo} size="lg" withArrow fullWidth>
             Get Started
           </Button>
           <p className={styles.summaryNote}>
-            Online enrolment is coming soon. Get in touch and we’ll help you begin.
+            You’ll start with a short nutrition assessment so your dietitian can understand your
+            needs.
           </p>
         </aside>
         <div className={styles.main}>

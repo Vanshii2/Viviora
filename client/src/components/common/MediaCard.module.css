@@ -64,3 +64,11 @@
 .description + .cta {
   margin-top: var(--space-4);
 }
+.extra {
+  margin-top: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+.extra + .cta {
+  margin-top: var(--space-5);
+}

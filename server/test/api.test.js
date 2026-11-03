@@ -75,7 +75,8 @@ describe('programs', () => {
     assert.equal(p.title, 'Gut Health');
     assert.equal(p.options.length, 6);
     assert.equal(p.parent, null);
-    assert.equal(p.price, null);
+    assert.equal(p.price, 2499);
+    assert.equal(p.discountPercent, 29);
     assert.ok(p.faqs.every((f) => f.id && f.question && f.answer));
   });
 

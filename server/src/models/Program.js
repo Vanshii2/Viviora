@@ -32,6 +32,8 @@ const programSchema = new mongoose.Schema(
     included: [{ type: String, trim: true }],
     /** Price in rupees; null = "Pricing coming soon". */
     price: { type: Number, min: 0, default: null },
+    /** Regular price (₹) shown struck through when higher than price; null hides the discount. */
+    compareAtPrice: { type: Number, min: 0, default: null },
     faqs: [faqSchema],
     options: [optionSchema],
     featured: { type: Boolean, default: false },

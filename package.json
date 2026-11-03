@@ -2,7 +2,7 @@
   "name": "viviora",
   "private": true,
   "version": "0.1.0",
-  "description": "Viviora — premium nutrition and wellness platform (MERN)",
+  "description": "Viviora \u2014 premium nutrition and wellness platform (MERN)",
   "workspaces": [
     "client",
     "server"
@@ -12,7 +12,7 @@
     "dev:client": "npm run dev -w client",
     "dev:server": "npm run dev -w server",
     "build": "npm run build -w client",
-    "lint": "npm run lint -w client && npm run lint -w server",
+    "lint": "npm run lint -w client && npm run lint -w server && eslint --config shared/eslint.config.js shared",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

@@ -30,7 +30,8 @@
   font-size: var(--text-3xl);
 }
 .lg .title {
-  font-size: clamp(2.375rem, 1.6rem + 3.2vw, 3.75rem);
+  font-size: clamp(2.125rem, 1.6rem + 2.2vw, 3.25rem);
+  line-height: 1.12;
 }
 .description {
   font-size: var(--text-md);

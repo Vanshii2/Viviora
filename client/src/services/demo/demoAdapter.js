@@ -12,12 +12,25 @@ import { homeFaqs } from '../../../../server/src/seed/data/faqs.data.js';
 
 const SLUG = /^[a-z0-9-]{1,80}$/;
 
-const toCard = ({ slug, title, shortDescription, image, featured }) => ({
-  slug,
-  title,
-  shortDescription,
-  image,
-  featured: Boolean(featured),
+/** Public pricing shape; discount only when the regular price is genuinely higher. */
+const toPricing = ({ price, compareAtPrice }) => {
+  const hasDiscount = price != null && compareAtPrice != null && compareAtPrice > price;
+  return {
+    price: price ?? null,
+    compareAtPrice: hasDiscount ? compareAtPrice : null,
+    discountPercent: hasDiscount ? Math.round(((compareAtPrice - price) / compareAtPrice) * 100) : null,
+  };
+};
+
+
+const toCard = (p) => ({
+  slug: p.slug,
+  title: p.title,
+  shortDescription: p.shortDescription,
+  image: p.image,
+  featured: Boolean(p.featured),
+  duration: p.duration,
+  ...toPricing(p),
 });
 
 const toDetail = (p) => ({
@@ -32,7 +45,7 @@ const toDetail = (p) => ({
   audience: p.audience,
   benefits: p.benefits,
   included: p.included,
-  price: p.price ?? null,
+  ...toPricing(p),
   faqs: p.faqs,
   options: programOptions
     .filter((o) => o.parentSlug === p.slug)
