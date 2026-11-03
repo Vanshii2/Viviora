@@ -283,7 +283,7 @@ Errors: `400 VALIDATION_ERROR` (with per-field details), `400 INVALID_JSON`, `40
   - Pages can only host static files, so the preview uses a **demo mode** (`VITE_DEMO_MODE=true`): content comes from the seed data bundled into the page, and the contact form clearly says the message was **not** sent
   - The site works under the `/Viviora/` sub-path, including direct links (a `404.html` fallback) and images
   - Normal builds never include the demo code or data
-- Verified locally against the exact Pages build: **25/25 browser checks pass**, including:
+- **Live site verified** (https://vanshii2.github.io/Viviora/): **25/25 browser checks pass** against the deployed site, including:
   - every page opened by direct link, and photos loading
   - your Mission, Vision and Philosophy text present word for word on the About page
   - the preview contact notice
