@@ -292,6 +292,120 @@ Errors: `400 VALIDATION_ERROR` (with per-field details), `400 INVALID_JSON`, `40
 
 ---
 
+## Nutrition Assessment Form + pricing + typography (2026-11-04)
+
+### Look & pricing
+
+- **Headings use Fraunces** (refined modern serif) instead of Playfair Display; the hero heading is smaller and the yellow highlight is gone
+- **Prices on every program** (under ₹3,000) with the regular price struck through and **"You save ₹… (…% off)"** written underneath, on all program cards and on each program page:
+  Gut Health ₹2,499 (₹3,499) · Weight Loss ₹2,799 (₹3,999) · Muscle Building ₹2,499 (₹3,499) · Women's Health ₹2,699 (₹3,799) · Lifestyle Disorders ₹2,999 (₹4,199) · Kids Nutrition ₹1,999 (₹2,799) · Sports Nutrition ₹2,799 (₹3,799)
+  Set in `PROGRAM_PRICING` (`server/src/seed/data/programs.data.js`), then run `npm run seed -w server`. Focused programs use their parent's price.
+
+### Nutrition assessment (`/nutrition-assessment?program=<slug>`)
+
+Opened by **Start Your Assessment** and **Get Started** on every program page; the program (or focused option such as `pcos`) is detected automatically. Without a valid program, step 1 asks the user to choose one.
+
+**7 steps** with a progress bar (step x of 7, %), Back / Continue, and answers kept when moving between steps:
+Basic information → Body measurements → Health → Nutrition & food habits → Lifestyle (fully skippable) → Goals → Review & submit
+
+| Required (marked *)                                                                                                                                     | Everything else is optional (labelled "Optional")                                                                                                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Full name, age (child's age for Kids), email, phone · weight, height · medical-condition declaration · dietary preference · at least one goal · consent | gender, city, occupation · target / previous weight, waist, recent change · medications, supplements, allergies, intolerances, surgeries, family history, reports · all food habits · all lifestyle · timeline, concerns, expectations, notes |
+
+**Conditional questions:**
+
+- PCOS: diagnosis, cycle regularity, symptoms
+- Diabetes: type, treatment, blood sugar
+- Thyroid: type, treatment
+- Digestive issues: symptoms (+ other), frequency
+- "Other" condition: please specify
+- "No known conditions" and "Prefer not to say" automatically clear the other choices
+
+**Program-specific questions:**
+
+| Program               | What changes                                                                                                                             |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Weight Loss           | previous attempts and weight-related challenges                                                                                          |
+| Gut Health            | digestion questions shown automatically                                                                                                  |
+| Women's Health / PCOS | PCOS questions shown automatically                                                                                                       |
+| Muscle Building       | training routine and muscle goals                                                                                                        |
+| Sports Nutrition      | sport, training frequency and intensity, performance goals                                                                               |
+| Lifestyle Disorders   | current treatment and lifestyle challenges                                                                                               |
+| **Kids Nutrition**    | the child's name or initials, age and gender are asked, while contact details come from the **parent or guardian** who fills in the form |
+
+The program's goal is pre-selected (e.g. Weight Loss → "Weight loss"; PCOS → "PCOS management").
+
+**BMI** = weight ÷ (height in m)², one decimal, recalculated live as weight or height changes. It is shown on the measurements step and in the review, with the adult screening range (18.5–24.9) and a disclaimer. There are no diagnosis labels. Under 18, or on Kids Nutrition, it says the dietitian will use age-appropriate guidance. The server recalculates BMI itself.
+
+**Review:** every answered question by section, each with an **Edit** button that returns to the review afterwards. Empty and irrelevant questions are hidden. A **consent** checkbox is required.
+
+**Submission:**
+
+- Shows a loading state, and double submits are blocked.
+- The success page appears **only after the server confirms**, showing the program, the status "Submitted" and a reference.
+- If the request fails, a clear error appears and the answers are kept.
+- On the GitHub Pages preview it says the assessment was **not** sent.
+
+**Privacy & security:**
+
+- Strict server-side validation (structured schema, enums, limits; unknown fields dropped).
+- **No API to read assessments.**
+- Rate limited.
+- Payloads are never logged.
+- The draft is kept only in `sessionStorage`, and **excludes body measurements and health answers**. Nothing is stored in localStorage, and the draft is cleared after submitting.
+- The browser warns before leaving with unsent answers.
+- Medical report files are checked (PDF/JPG/PNG, max 5 MB, removable) but **not uploaded**, and the form says so. Secure upload comes with the reports module.
+
+### Files
+
+- **Created:**
+  - shared: `shared/assessment.js`
+  - server: `server/src/features/nutrition-assessment/` (model, validation, service, controller, routes) and `server/test/assessment.test.js`
+  - client: `client/src/features/assessment/` (config, validation, payload, draft, service, form fields, progress, BMI card, report upload, 7 step components, success view), `client/src/pages/NutritionAssessmentPage.jsx` and `client/src/features/programs/components/PriceTag.jsx`
+- **Modified:**
+  - the program detail page, program card and media card (prices, assessment links)
+  - the program model and service and the seed data (prices)
+  - the router, the Vite config (`@shared` alias) and the demo adapter
+  - fonts and tokens
+
+### Testing (actual results)
+
+- **Server: 27/27 tests pass.** The assessment tests cover:
+  - storing an assessment, with BMI recalculated on the server and blank answers dropped
+  - friendly messages for every missing required field
+  - Kids Nutrition requiring the child's details, including its focused programs
+  - adults having to give their age
+  - focused programs being accepted
+  - unknown programs, invalid choices and conflicting condition answers being rejected
+  - no read endpoint existing
+  - prices under ₹3,000 with correct discount percentages
+- **Browser end-to-end: 66/66 checks pass** against an isolated test server and database:
+  - entry from the program page, the progress bar, each step's required fields and friendly messages, and focus moving to the first error
+  - email and phone checks, and skipping optional questions
+  - BMI: 55 kg / 165 cm = 20.2, recalculating when weight or height changes, and invalid heights
+  - Back keeping answers
+  - the PCOS, diabetes, "other" and exclusive-choice rules
+  - file type, size and removal checks
+  - lifestyle skipping, pre-selected goals and the weight-loss questions
+  - the review content, Edit and returning to review
+  - consent, the API-failure path, success, and **a triple-click storing exactly 1 assessment**
+  - draft clearing
+  - every program variant: Kids, Gut Health, PCOS, Muscle Building, Sports and Lifestyle Disorders
+  - missing and unknown programs
+  - the draft privacy rules and restoring after a reload
+  - no sideways scrolling at 390px
+- GitHub Pages preview build: the assessment works and shows the "not sent" notice. **25/25** site checks still pass.
+- Lint is clean, and both builds succeed.
+
+### Still pending
+
+- **Accounts:** saving to a user account, resuming a draft across devices, and "Save and exit" all need Phase 4 (login). Today, assessments are stored without a user link.
+- **Secure report upload:** needs the reports module and cloud storage.
+- **Dietitian/admin access** to read assessments: needs the admin panel. Until then, view them in MongoDB Atlas under `viviora` → `assessments`.
+- **Email confirmation** to the client: needs an email provider.
+
+---
+
 ## Recommended next: Phase 4 — Authentication & user dashboard
 
 - Phone OTP sign-in behind an SMS-provider adapter (with a development mock), hashed OTPs, expiry and attempt limits

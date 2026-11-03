@@ -18,10 +18,11 @@ const toPricing = ({ price, compareAtPrice }) => {
   return {
     price: price ?? null,
     compareAtPrice: hasDiscount ? compareAtPrice : null,
-    discountPercent: hasDiscount ? Math.round(((compareAtPrice - price) / compareAtPrice) * 100) : null,
+    discountPercent: hasDiscount
+      ? Math.round(((compareAtPrice - price) / compareAtPrice) * 100)
+      : null,
   };
 };
-
 
 const toCard = (p) => ({
   slug: p.slug,
@@ -98,6 +99,7 @@ function route(method, path, params) {
   }
   if (method === 'get' && path === '/faqs') return homeFaqs;
   if (method === 'post' && path === '/contact') return { received: false, demo: true };
+  if (method === 'post' && path === '/assessments') return { submitted: false, demo: true };
   return null;
 }
 

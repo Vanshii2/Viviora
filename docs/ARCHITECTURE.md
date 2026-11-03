@@ -89,7 +89,7 @@ Validation errors return **400 `VALIDATION_ERROR`** with per-field `details`.
 
 ## Route map
 
-**Public (built):** `/`, `/programs`, `/programs/:slug` (7 main programs + 32 focused programs), `/about`, `/blog`, `/blog/:slug`, `/contact` (`?subject=` prefills the form), `*` (404). Unlinked but present: `/testimonials`, `/terms`, `/privacy`
+**Public (built):** `/nutrition-assessment?program=:slug` (7-step assessment), `/`, `/programs`, `/programs/:slug` (7 main programs + 32 focused programs), `/about`, `/blog`, `/blog/:slug`, `/contact` (`?subject=` prefills the form), `*` (404). Unlinked but present: `/testimonials`, `/terms`, `/privacy`
 `/blog?category=:slug`, `/blog/:slug`, `/testimonials`, `/contact` (`?program=` prefills the form), `/terms`, `/privacy`, `*` (404)
 
 **Dashboard (Phase 3+):** `/login`, `/dashboard`, `/dashboard/programs`, `/dashboard/ai-diet`, `/dashboard/ai-diet/history`,
@@ -98,6 +98,10 @@ Validation errors return **400 `VALIDATION_ERROR`** with per-field `details`.
 
 **Admin (Phase 8):** `/admin`, `/admin/users`, `/admin/programs`, `/admin/orders`, `/admin/appointments`,
 `/admin/reports`, `/admin/blogs`, `/admin/coupons`, `/admin/testimonials`
+
+## Shared code
+
+`/shared/assessment.js` holds the assessment answer options, limits, BMI calculation and program rules. It is used by both the client (Vite alias `@shared`) and the server, so they can't drift apart.
 
 ## Data model
 

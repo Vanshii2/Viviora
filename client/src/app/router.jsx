@@ -21,6 +21,10 @@ export const router = createBrowserRouter(
         { path: '/testimonials', lazy: page(() => import('../pages/TestimonialsPage')) },
         { path: '/contact', lazy: page(() => import('../pages/ContactPage')) },
         {
+          path: '/nutrition-assessment',
+          lazy: page(() => import('../pages/NutritionAssessmentPage')),
+        },
+        {
           path: '/terms',
           lazy: async () => {
             const { default: PolicyPage } = await import('../pages/PolicyPage');

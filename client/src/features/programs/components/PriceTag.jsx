@@ -3,7 +3,13 @@ import { cx } from '../../../utils/cx';
 import styles from './PriceTag.module.css';
 
 /** Program price with the regular price struck through and the saving written underneath. */
-export default function PriceTag({ price, compareAtPrice, discountPercent, size = 'md', className }) {
+export default function PriceTag({
+  price,
+  compareAtPrice,
+  discountPercent,
+  size = 'md',
+  className,
+}) {
   if (price == null) return <p className={cx(styles.soon, className)}>Pricing coming soon</p>;
 
   return (

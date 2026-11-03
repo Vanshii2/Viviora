@@ -17,4 +17,8 @@ export const useFeaturedPrograms = () =>
   });
 
 export const useProgram = (slug) =>
-  useQuery({ queryKey: programKeys.detail(slug), queryFn: () => programsService.getProgram(slug) });
+  useQuery({
+    queryKey: programKeys.detail(slug),
+    queryFn: () => programsService.getProgram(slug),
+    enabled: Boolean(slug),
+  });

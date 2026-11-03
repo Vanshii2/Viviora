@@ -1,0 +1,111 @@
+.wrap {
+  background: linear-gradient(
+    180deg,
+    var(--color-background-soft) 0%,
+    var(--color-background) 320px
+  );
+}
+.page {
+  padding-block: var(--space-10) var(--space-section);
+}
+.intro {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+.title {
+  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.375rem);
+}
+.lead {
+  color: var(--color-text-secondary);
+}
+.star {
+  color: var(--color-error);
+}
+.notice {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  background: var(--color-accent-wash);
+  border: 1px solid color-mix(in srgb, var(--color-brand-yellow) 45%, var(--color-border));
+  border-radius: var(--radius-md);
+}
+.notice svg,
+.alert svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.card {
+  display: grid;
+  gap: var(--space-8);
+  padding: clamp(var(--space-5), 4vw, var(--space-10));
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+.form {
+  display: grid;
+  gap: var(--space-8);
+}
+.stepHead {
+  display: grid;
+  gap: var(--space-1);
+}
+.stepTitle {
+  font-size: var(--text-xl);
+}
+.stepTitle:focus {
+  outline: none;
+}
+.stepDescription {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.fields {
+  display: grid;
+  gap: var(--space-6);
+}
+.loading {
+  color: var(--color-text-secondary);
+}
+.alert {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-error);
+  background: color-mix(in srgb, var(--color-error) 6%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-error) 30%, var(--color-border));
+  border-radius: var(--radius-md);
+}
+.alert ul {
+  margin-top: var(--space-2);
+  padding-left: var(--space-5);
+}
+.linkButton {
+  padding: 0;
+  font-size: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}

@@ -93,6 +93,13 @@ describe('POST /api/v1/assessments', () => {
       assert.ok(d[key], `missing ${key}`);
   });
 
+  test('adults must give their age', async () => {
+    const body = adult();
+    body.personal.age = '';
+    const res = await request(app).post('/api/v1/assessments').send(body).expect(400);
+    assert.deepEqual(res.body.error.details.personal, ['Please enter your age.']);
+  });
+
   test('kids program requires child details and a guardian, not the adult age', async () => {
     const body = adult();
     body.program = 'kids-nutrition';
