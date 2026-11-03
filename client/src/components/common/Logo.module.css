@@ -1,0 +1,31 @@
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+.mark {
+  width: 22px;
+  height: auto;
+  margin-bottom: 2px;
+}
+.word {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  margin-right: -0.24em; /* optically centre letter-spaced text */
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+}
+.lg .mark {
+  width: 28px;
+}
+.lg .word {
+  font-size: 1.625rem;
+}
+.tagline {
+  margin-top: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}

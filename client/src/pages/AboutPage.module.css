@@ -1,0 +1,150 @@
+.eyebrow {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+.h2 {
+  margin-bottom: var(--space-5);
+  font-size: var(--text-2xl);
+}
+.h3 {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xl);
+}
+.name {
+  margin-bottom: var(--space-6);
+  font-size: var(--text-3xl);
+}
+.body {
+  color: var(--color-text-secondary);
+}
+.body + .body {
+  margin-top: var(--space-4);
+}
+.lead {
+  max-width: 34rem;
+}
+
+/* Story */
+.storySection {
+  background: linear-gradient(
+    180deg,
+    var(--color-background-soft) 0%,
+    var(--color-background) 100%
+  );
+}
+.story {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+  padding-block: var(--space-12) var(--space-16);
+}
+.h1 {
+  margin-bottom: var(--space-6);
+  font-size: var(--text-3xl);
+}
+.portrait {
+  width: min(100%, 440px);
+  aspect-ratio: 4 / 5;
+  justify-self: center;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+/* Academic + qualifications */
+.credentials {
+  display: grid;
+  gap: var(--space-12);
+}
+.textList {
+  display: grid;
+  gap: var(--space-4);
+  list-style: none;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+.textList li,
+.cert {
+  display: grid;
+  gap: var(--space-1);
+}
+.itemTitle {
+  font-weight: 600;
+}
+.itemMeta {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+/* Content awaiting real details — visibly provisional, never mistaken for final copy. */
+.placeholder {
+  opacity: 0.55;
+  font-style: italic;
+}
+
+/* Certifications */
+.certGrid {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  list-style: none;
+}
+.cert {
+  padding: var(--space-6);
+  text-align: center;
+  background: var(--color-background-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* Mission & vision */
+.missionVision {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+}
+
+/* Philosophy */
+.philosophy {
+  text-align: center;
+}
+.closing {
+  margin-top: var(--space-8);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .certGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .missionVision {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .missionVision > :first-child {
+    padding-right: var(--space-12);
+    border-right: 1px solid var(--color-border);
+  }
+  .missionVision > :last-child {
+    padding-left: var(--space-12);
+  }
+}
+@media (min-width: 900px) {
+  .story {
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-16);
+    padding-block: var(--space-16) var(--space-20);
+  }
+  .portrait {
+    justify-self: end;
+  }
+  .credentials {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+  }
+}

@@ -1,0 +1,48 @@
+.layout {
+  display: grid;
+  gap: var(--space-10);
+  max-width: 820px;
+}
+.layout:has(.aside) {
+  max-width: none;
+}
+.formCard {
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.aside {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+.asideTitle {
+  font-size: var(--text-xl);
+}
+.methods {
+  display: grid;
+  gap: var(--space-5);
+  list-style: none;
+}
+.methods li {
+  display: flex;
+  gap: var(--space-3);
+}
+.methodLabel {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+.methodValue {
+  font-weight: 500;
+}
+@media (min-width: 900px) {
+  .layout:has(.aside) {
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-16);
+  }
+}

@@ -1,0 +1,9 @@
+.section {
+  padding-block: var(--space-section);
+}
+.compact {
+  padding-block: calc(var(--space-section) * 0.6);
+}
+.soft {
+  background: var(--color-background-soft);
+}
