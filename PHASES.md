@@ -248,7 +248,7 @@ Errors: `400 VALIDATION_ERROR` (with per-field details), `400 INVALID_JSON`, `40
 - 13 free-licence photos from Unsplash (commercial use allowed) downloaded into `client/public/images/`,
   resized for the web (2.6 MB total). Sources listed in `client/public/images/CREDITS.md`
 - Covered: home hero, Programs hero, all 7 programs, all 4 blog articles
-- **Still placeholder:** `about/portrait.jpg`. It needs a real photo of Vinni Kapoor Sharma (not stock)
+- About page: a nutrition still-life photo (`about/story.jpg`, no person) until a real photo of Vinni Kapoor Sharma is supplied
 
 ### Testing (actual results)
 

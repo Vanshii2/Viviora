@@ -7,8 +7,10 @@ export const aboutContent = {
   story: {
     eyebrow: 'My Story',
     title: 'From a Personal Interest to a Bigger Purpose',
-    image: '/images/about/portrait.jpg',
-    imageAlt: 'Portrait of Vinni Kapoor Sharma',
+    // Stock still-life until a real photo of Vinni is supplied. To use her photo: save it as
+    // client/public/images/about/portrait.jpg and point `image` there with a matching imageAlt.
+    image: '/images/about/story.jpg',
+    imageAlt: 'Colourful spices and seeds arranged on wooden spoons',
     paragraphs: [
       'At Viviora, I believe nutrition is not about restrictions, but about creating a sustainable, balanced and joyful lifestyle that works for you.',
       'My journey with nutrition began with a simple interest — understanding how food can improve energy, mood and overall well-being. What started as a personal curiosity soon became my passion: helping others build healthier, happier lives through the right nutrition and lifestyle choices.',

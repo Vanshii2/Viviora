@@ -19,7 +19,8 @@ Source: `https://images.unsplash.com/photo-<id>`
 | blog/digestion-habits.jpg | 1505576399279-565b52d4ac71 |
 | blog/balanced-plate.jpg | 1547592180-85f173990554 |
 | blog/sleep-stress.jpg | 1515894203077-9cd36032142f |
+| about/story.jpg | 1506368249639-73a05d6f6488 |
 
-**Not stock:** `about/portrait.jpg` must be a real photo of Vinni Kapoor Sharma (still a placeholder).
+**Wanted:** a real photo of Vinni Kapoor Sharma for the About page (`about/portrait.jpg`). Until then the About page shows `about/story.jpg` (still life, no person).
 
 Replace any of these with your own photography by keeping the same filename.
