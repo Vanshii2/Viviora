@@ -16,7 +16,7 @@
 }
 .name {
   margin-bottom: var(--space-6);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
 }
 .body {
   color: var(--color-text-secondary);
@@ -38,27 +38,37 @@
 }
 .story {
   display: grid;
-  gap: var(--space-10);
+  gap: var(--space-8);
   align-items: center;
-  padding-block: var(--space-12) var(--space-16);
+  padding-block: var(--space-10) var(--space-12);
 }
 .h1 {
-  margin-bottom: var(--space-6);
-  font-size: var(--text-3xl);
+  margin-bottom: var(--space-4);
+  font-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.625rem);
 }
-.portrait {
-  width: min(100%, 440px);
-  aspect-ratio: 4 / 5;
+.lead {
+  max-width: 32rem;
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+}
+.storyImage {
+  width: min(100%, 460px);
+  aspect-ratio: 4 / 3;
   justify-self: center;
   overflow: hidden;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
+}
+.storyText {
+  padding-left: var(--space-6);
+  border-left: 2px solid var(--color-brand-yellow);
 }
 
 /* Academic + qualifications */
 .credentials {
   display: grid;
   gap: var(--space-12);
+  align-items: end;
 }
 .textList {
   display: grid;
@@ -136,11 +146,11 @@
 }
 @media (min-width: 900px) {
   .story {
-    grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-16);
-    padding-block: var(--space-16) var(--space-20);
+    grid-template-columns: 1.15fr 1fr;
+    gap: var(--space-12);
+    padding-block: var(--space-12) var(--space-16);
   }
-  .portrait {
+  .storyImage {
     justify-self: end;
   }
   .credentials {

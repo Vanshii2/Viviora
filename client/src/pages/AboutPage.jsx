@@ -26,6 +26,7 @@ function TextList({ items }) {
 
 export default function AboutPage() {
   const academic = about.academic.entries.map((e) => ({ ...e, detail: e.institution }));
+  const [storyLead, ...storyRest] = about.story.paragraphs;
 
   return (
     <>
@@ -34,7 +35,7 @@ export default function AboutPage() {
         description="Meet Vinni Kapoor Sharma and the philosophy behind Viviora: your body is unique, and your nutrition should be too."
       />
 
-      {/* 1. My Story */}
+      {/* 1. My Story — short intro band, then the story text */}
       <section className={styles.storySection} aria-labelledby="story-title">
         <Container className={styles.story}>
           <div className="fade-up">
@@ -42,17 +43,23 @@ export default function AboutPage() {
             <h1 id="story-title" className={styles.h1}>
               {about.story.title}
             </h1>
-            {about.story.paragraphs.map((p) => (
-              <p key={p} className={styles.body}>
-                {p}
-              </p>
-            ))}
+            <p className={styles.lead}>{storyLead}</p>
           </div>
-          <div className={styles.portrait}>
+          <div className={styles.storyImage}>
             <SmartImage src={about.story.image} alt={about.story.imageAlt} eager />
           </div>
         </Container>
       </section>
+
+      <Section narrow compact aria-label="My story">
+        <div className={styles.storyText}>
+          {storyRest.map((p) => (
+            <p key={p} className={styles.body}>
+              {p}
+            </p>
+          ))}
+        </div>
+      </Section>
 
       {/* 2. Academic Background + 3. Qualifications */}
       <Section tone="soft" compact aria-label="Academic background and qualifications">
@@ -63,7 +70,6 @@ export default function AboutPage() {
             <TextList items={academic} />
           </div>
           <div>
-            <Eyebrow>Qualifications</Eyebrow>
             <h2 className={styles.h2}>Qualifications</h2>
             <TextList items={about.qualifications} />
           </div>
@@ -72,7 +78,6 @@ export default function AboutPage() {
 
       {/* 4. Certifications */}
       <Section aria-labelledby="certifications-title">
-        <Eyebrow>Certifications</Eyebrow>
         <h2 id="certifications-title" className={styles.h2}>
           Certifications
         </h2>
@@ -94,12 +99,10 @@ export default function AboutPage() {
       <Section tone="soft" aria-label="Mission and vision">
         <div className={styles.missionVision}>
           <div>
-            <Eyebrow>Mission</Eyebrow>
             <h2 className={styles.h3}>Our Mission</h2>
             <p className={styles.body}>{about.mission}</p>
           </div>
           <div>
-            <Eyebrow>Vision</Eyebrow>
             <h2 className={styles.h3}>Our Vision</h2>
             <p className={styles.body}>{about.vision}</p>
           </div>
